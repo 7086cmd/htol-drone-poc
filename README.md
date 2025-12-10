@@ -10,16 +10,15 @@ Drones nowadays are mostly VTOL (Vertical Take-off and Landing) types, which hav
 
 ## Designs
 
-- Plane Body: The drone can be 3D printed using LW-PLA material in about 20% to 30% infill to ensure durability while keeping the weight low.
+- Plane Body: The drone can be 3D printed using LW-PLA material in about 20% to 30% infill to ensure durability while keeping the weight low; for critical structural parts, PETG or ABS materials can be used. The body is designed to house all the necessary components, including the flight controller, power system, and sensors. It features a streamlined shape to minimize drag during flight. The carbon fiber rods are used to reinforce the structure, providing additional strength and rigidity. The body also includes compartments for easy access to the electronics and battery.
 - Wing Configuration: The wings are designed to provide optimal lift and stability during flight. They can be printed separately and attached to the main body using screws or adhesive.
 - Power system:
-   - Motors: The drone is powered by two brushless motors, that balancedly placed on each wing, providing sufficient thrust for take-off, flight, and landing. Currently I prefer the A2212 motors in 1000 KV variant, with 1060 propellers.
+   - Motors: This is an EDF (Electric Ducted Fan) configuration, using two brushless motors (CW and CCW) to provide the necessary thrust for horizontal take-off and landing. The EDF setup is chosen for its efficiency and ability to generate high thrust in a compact form factor. We use DShot protocol for better performance and reliability, and the BLHeli firmware on the ESCs supports it. The 70mm 4S 2800KV brushless motors are selected for their balance between power and efficiency, suitable for the drone's size and weight. It can provide 1.8 kg thrust each, so the total thrust is around 3.6 kg, which should be sufficient for a drone weighing around 2 kg including payload.
    - Servos: For control surfaces, standard servos are used to manipulate the ailerons, elevator, and rudder.
-      - Ailerons and Elevator: MG90S servos are used for controlling the ailerons and elevator, providing precise control over roll and pitch movements.
-      - Rudder: SG5010 servos are used for controlling the rudder, allowing for effective yaw control.
-      - Nose Wheel Steering: A MG955 servo is used for steering the nose wheel during taxiing, take-off, and landing. This ensures durable and responsive control of the nose wheel in preventing it from crashing.
-   - ESCs: Electronic Speed Controllers (ESCs) are used to regulate the speed of the brushless motors. We recommend 30A ESCs to ensure smooth and responsive control.
-   - Power Supply: ACE RC 3S 5300 mAh LiPo batteries are used to provide sufficient power for the drone's flight duration and performance. Further more, two 18650 Li-ion batteries are used to power the onboard electronics. Concerning its weight, a BEC (Battery Eliminator Circuit) can be used to directly step down the voltage from the main battery to power the electronics, instead of using separate batteries.
+      - Ailerons, Elevator, and Rudder: MG90S servos are used for controlling the ailerons and elevator, providing precise control over roll and pitch movements.
+      - Undercarriage Steering: A MG955 servo is used for steering the undercarriage during taxiing, take-off, and landing operations.
+   - ESCs: Electronic Speed Controllers (ESCs) are used to regulate the speed of the brushless motors. The 80A BLHeli ESCs are chosen for their compatibility with the DShot protocol and their ability to handle the power requirements of the motors. It also have a 5V/5A BEC to power the flight controller and other electronics on each ESC.
+   - Power Supply: ACE RC 4S 5300mAh LiPo batteries are used to provide the necessary power for the motors and electronics. These batteries offer a good balance between capacity and weight, ensuring sufficient flight time while keeping the overall weight of the drone manageable.
 - Flight Controller:
    - Lower Layer: The drone is equipped with a STM32H743VGT6 microcontroller, which serves as the flight controller. It is responsible for stabilizing the drone, managing flight modes, and processing sensor data. (*That's because only STM32H743VGT6 in my stock.*)
    - Upper Layer: We leverage Orange Pi Zero 3 (with 4GB RAM) as the companion computer to handle high-level tasks such as mission planning, computer vision, and communication with ground control stations. (*That's because only Orange Pi Zero 3 in my stock.*)
@@ -63,22 +62,20 @@ We list components and its weights and sizes as well as the estimated weight and
 
 We design the wingspan to be around 1.2 meters, providing sufficient lift for horizontal take-off and landing. The wing area is optimized to balance lift and drag, ensuring efficient flight performance. The airfoil shape is selected to enhance lift generation while minimizing drag.
 
-| Component          | Qty | Weight (grams) | Size (mm)               | Model                   |
-|--------------------|-----|----------------|-------------------------|-------------------------|
-| Plane Body         | 1   | TBA            | TBA                     | TBA                     |
-| Wings              | 1   | TBA            | TBA                     | TBA                     |
-| Motors             | 2   | 51.5 g         | 27.7 * 27               | A2212 1000KV            |
-| Propellers         | 2   | 1.29 g         | 254 (l) / 124 (h) φ6    | APC 10x6E               |
-| ESCs               | 2   | 30 g           | 45 * 24 * 9             | 30A ESC                 |
-| Servos (MG995)     | 1   | 55 g           | 54 * 45 * 20            | MG995                   |
-| Servos (SG5010)    | 2   | 39 g           | 44 * 40 * 20            | SG5010                  |
-| Servos (MG90S)     | 3   | 14 g           | 32 * 23 * 12            | MG90S                   |
-| IMU (MPU6050...).  | 1   | 5 g            | 22 * 17 * 4             | MPU6050 and more        |
-| GPS (NEO-6M)       | 1   | 12 g           | 25 * 25 * 7             | NEO-6M                  |
-| STM32H743VGT6      | 1   | TBA            | 63 * 36                 | STM32H743VGT6 Dev Board |
-| OrangePi Zero 3    | 1   | 24 g           | 55 * 50                 | Orange Pi Zero 3        |
-| ACE RC 3S 5300mAh  | 1   | 340 g          | 29 * 43 * 136           | ACE RC LiPo Battery     |
-| Carbon Fiber Rods  | TBA | TBA            | TBA                     | TBA                     |
+| Component          | Qty | Weight (grams) | Size (mm)               | Model                    | Price (USD) |
+|--------------------|-----|----------------|-------------------------|--------------------------|-------------|
+| Plane Body         | 1   | TBA            | TBA                     | TBA                      | TBA         |
+| Wings              | 1   | TBA            | TBA                     | TBA                      | TBA         |
+| IMU (MPU6050...).  | 1   | 5 g            | 22 * 17 * 4             | MPU6050 and more         | *in stock*  |
+| GPS (NEO-6M)       | 1   | 12 g           | 25 * 25 * 7             | NEO-6M                   | *in stock*  |
+| STM32H743VGT6      | 1   | TBA            | 63 * 36                 | STM32H743VGT6 Dev Board  | *in stock*  |
+| OrangePi Zero 3    | 1   | 24 g           | 55 * 50                 | Orange Pi Zero 3         | *in stock*  |
+| ACE RC 4S 5300mAh  | 1   | 485 g          | 32 * 48 * 158           | ACE RC LiPo Battery      | \$ 55.00    |
+| MG996R Servos      | 1   | 55 g           | 40.7 * 19.7 * 42.9      | MG996R                   | \$  2.00    |
+| MG90S Servos       | 5   | 12 g           | 22.8 * 12.2 * 28.5      | MG90S                    | \$  1.50    |
+| BLHeli 80A ESCs    | 2   | 29.4 g         | 83 * 38 * 12            | BLHeli 80A               | \$ 15.00    |
+| EDF 4S 2800KV 70mm | 2   | 178 g          | 27 * 30                 | CW/CCW 4S 2800KV 70mm    | \$ 30.00    |
+| Carbon Fiber Rods  | TBA | TBA            | TBA                     | TBA                      | TBA         |
 
 Note: The IMU module includes MPU6050, BNO055, and BMP280 sensors.
 
