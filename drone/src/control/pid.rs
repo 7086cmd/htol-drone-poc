@@ -50,10 +50,7 @@ impl PidController {
         self.altitude.setpoint = pitch_setpoint;
 
         // Inner loops (pitch, roll, yaw) @ 250 Hz
-        let pitch_output = self
-            .pitch
-            .next_control_output(telem.pitch)
-            .output;
+        let pitch_output = self.pitch.next_control_output(telem.pitch).output;
         let roll_output = self.roll.next_control_output(telem.roll).output;
         let yaw_output = self.yaw.next_control_output(telem.yaw).output;
 

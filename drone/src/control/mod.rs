@@ -3,8 +3,8 @@ pub mod pid;
 
 use dshot_frame::{Frame, NormalDshot};
 use embassy_stm32::peripherals::{TIM1, TIM2, TIM5};
-use embassy_stm32::timer::simple_pwm::SimplePwm;
 use embassy_stm32::timer::Channel::{Ch1, Ch2};
+use embassy_stm32::timer::simple_pwm::SimplePwm;
 use embassy_stm32::{Peri, peripherals};
 
 pub struct MotionController<'a> {
@@ -58,7 +58,12 @@ impl<'a> MotionController<'a> {
             .ok_or_else(|| ControlError::DshotError)?;
 
         self.edf
-            .waveform_up_multi_channel(self.dma.reborrow(), Ch1, Ch2, &frame.duty_cycles(max_duty_cycles))
+            .waveform_up_multi_channel(
+                self.dma.reborrow(),
+                Ch1,
+                Ch2,
+                &frame.duty_cycles(max_duty_cycles),
+            )
             .await;
 
         // After transmission, set duty cycle to 0 to stop corrupted signals.

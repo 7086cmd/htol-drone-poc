@@ -183,7 +183,7 @@ async fn main(spawner: Spawner) {
 
 async fn read_sensors(fusion: &mut SensorFusion) -> Result<Telemetry, ()> {
     use num_traits::float::Float;
-    
+
     let velocity = fusion.velocity;
 
     let speed = (velocity.x.powi(2) + velocity.y.powi(2)).sqrt();

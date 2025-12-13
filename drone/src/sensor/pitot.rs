@@ -80,7 +80,11 @@ impl<'a> Pitot<'a> {
             0.0
         } else {
             let velocity = (2.0 * pressure_pa / air_density).sqrt();
-            if pressure_pa < 0.0 { -velocity } else { velocity }
+            if pressure_pa < 0.0 {
+                -velocity
+            } else {
+                velocity
+            }
         }
     }
 }

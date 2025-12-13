@@ -1,10 +1,9 @@
 #![allow(dead_code)]
-pub mod imu;
-pub mod pitot;
 pub mod fusion;
 pub mod gps;
+pub mod imu;
+pub mod pitot;
 use embassy_stm32::i2c::Error as I2cError;
-
 
 #[derive(Debug, defmt::Format)]
 pub enum SensorError {

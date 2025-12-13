@@ -6,7 +6,7 @@ pub enum GpsError {
 }
 
 pub struct NeoGps<'a> {
-    pub uart: Uart<'a, Async>
+    pub uart: Uart<'a, Async>,
 }
 
 pub struct GpsData {
@@ -26,10 +26,12 @@ impl<'a> NeoGps<'a> {
 
     pub async fn read(&mut self) -> Result<GpsData, GpsError> {
         let buffer = &mut [0u8; 128];
-        self.uart.read_until_idle(buffer).await.map_err(|_| GpsError::UartError)?;
+        self.uart
+            .read_until_idle(buffer)
+            .await
+            .map_err(|_| GpsError::UartError)?;
 
-        let result = nmea::parse_bytes(buffer)
-            .map_err(|_| GpsError::ParseError)?;
+        let result = nmea::parse_bytes(buffer).map_err(|_| GpsError::ParseError)?;
 
         match result {
             nmea::ParseResult::GGA(sentence) => Ok(GpsData {
