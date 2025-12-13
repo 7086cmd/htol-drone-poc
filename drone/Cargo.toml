@@ -1,0 +1,55 @@
+# This file was automatically generated.
+
+[package]
+name = "drone"
+edition.workspace = true
+version.workspace = true
+license.workspace = true
+
+[dependencies]
+cortex-m = { version = "0.7.7", features = [
+  "inline-asm",
+  "critical-section-single-core",
+] }
+cortex-m-rt = "0.7.5"
+defmt = { version = "1.0.1" }
+defmt-rtt = { version = "1.1.0" }
+embassy-executor = { version = "0.9.1", features = [
+  "arch-cortex-m",
+  "executor-thread",
+  "defmt",
+] }
+embassy-futures = { version = "0.1.2", features = ["defmt"] }
+embassy-sync = { version = "0.7.2", features = ["defmt"] }
+embassy-time = { version = "0.5.0", features = [
+  "tick-hz-480_000_000",
+  "defmt-timestamp-uptime",
+  "defmt",
+] }
+embassy-stm32 = { version = "0.4.0", features = [
+  "stm32h743vg",
+  "defmt",
+  "rt",
+  "chrono",
+  "memory-x",
+  "unstable-pac",
+  "time-driver-tim4",
+  "exti"
+] }
+panic-halt = "1.0.0"
+panic-probe = { version = "1.0.0", features = ["print-defmt"] }
+ahrs = { version = "0.8.0", default-features = false }
+nalgebra = { version = "0.34.1", default-features = false, features = ["libm"] }
+libm = "0.2.15"
+serde = { version = "1.0.228", default-features = false, features = [
+  "derive",
+  "alloc",
+] }
+pid = "4.0.0"
+num-traits = { version = "0.2.19", default-features = false, features = ["libm"] }
+dshot-frame = "0.2.1"
+
+[[bin]]
+name = "drone"
+test = false
+bench = false

@@ -16,9 +16,9 @@ Drones nowadays are mostly VTOL (Vertical Take-off and Landing) types, which hav
    - Motors: This is an EDF (Electric Ducted Fan) configuration, using two brushless motors (CW and CCW) to provide the necessary thrust for horizontal take-off and landing. The EDF setup is chosen for its efficiency and ability to generate high thrust in a compact form factor. We use DShot protocol for better performance and reliability, and the BLHeli firmware on the ESCs supports it. The 70mm 4S 2800KV brushless motors are selected for their balance between power and efficiency, suitable for the drone's size and weight. It can provide 1.8 kg thrust each, so the total thrust is around 3.6 kg, which should be sufficient for a drone weighing around 2 kg including payload.
    - Servos: For control surfaces, standard servos are used to manipulate the ailerons, elevator, and rudder.
       - Ailerons, Elevator, and Rudder: MG90S servos are used for controlling the ailerons and elevator, providing precise control over roll and pitch movements.
-      - Undercarriage Steering: A MG955 servo is used for steering the undercarriage during taxiing, take-off, and landing operations.
+      - Undercarriage Steering: A MG955 servo is used for steering the main undercarriage during taxiing, take-off, and landing operations; a MG996R servo is used for controlling the nose wheel steering.
    - ESCs: Electronic Speed Controllers (ESCs) are used to regulate the speed of the brushless motors. The 80A BLHeli ESCs are chosen for their compatibility with the DShot protocol and their ability to handle the power requirements of the motors. It also have a 5V/5A BEC to power the flight controller and other electronics on each ESC.
-   - Power Supply: ACE RC 4S 5300mAh LiPo batteries are used to provide the necessary power for the motors and electronics. These batteries offer a good balance between capacity and weight, ensuring sufficient flight time while keeping the overall weight of the drone manageable.
+   - Power Supply: Gens Ace 4S 5300mAh LiPo batteries are used to provide the necessary power for the motors and electronics. These batteries offer a good balance between capacity and weight, ensuring sufficient flight time while keeping the overall weight of the drone manageable.
 - Flight Controller:
    - Lower Layer: The drone is equipped with a STM32H743VGT6 microcontroller, which serves as the flight controller. It is responsible for stabilizing the drone, managing flight modes, and processing sensor data. (*That's because only STM32H743VGT6 in my stock.*)
    - Upper Layer: We leverage Orange Pi Zero 3 (with 4GB RAM) as the companion computer to handle high-level tasks such as mission planning, computer vision, and communication with ground control stations. (*That's because only Orange Pi Zero 3 in my stock.*)
@@ -62,20 +62,20 @@ We list components and its weights and sizes as well as the estimated weight and
 
 We design the wingspan to be around 1.2 meters, providing sufficient lift for horizontal take-off and landing. The wing area is optimized to balance lift and drag, ensuring efficient flight performance. The airfoil shape is selected to enhance lift generation while minimizing drag.
 
-| Component          | Qty | Weight (grams) | Size (mm)               | Model                    | Price (USD) |
-|--------------------|-----|----------------|-------------------------|--------------------------|-------------|
-| Plane Body         | 1   | TBA            | TBA                     | TBA                      | TBA         |
-| Wings              | 1   | TBA            | TBA                     | TBA                      | TBA         |
-| IMU (MPU6050...).  | 1   | 5 g            | 22 * 17 * 4             | MPU6050 and more         | *in stock*  |
-| GPS (NEO-6M)       | 1   | 12 g           | 25 * 25 * 7             | NEO-6M                   | *in stock*  |
-| STM32H743VGT6      | 1   | TBA            | 63 * 36                 | STM32H743VGT6 Dev Board  | *in stock*  |
-| OrangePi Zero 3    | 1   | 24 g           | 55 * 50                 | Orange Pi Zero 3         | *in stock*  |
-| ACE RC 4S 5300mAh  | 1   | 485 g          | 32 * 48 * 158           | ACE RC LiPo Battery      | \$ 55.00    |
-| MG996R Servos      | 1   | 55 g           | 40.7 * 19.7 * 42.9      | MG996R                   | \$  2.00    |
-| MG90S Servos       | 5   | 12 g           | 22.8 * 12.2 * 28.5      | MG90S                    | \$  1.50    |
-| BLHeli 80A ESCs    | 2   | 29.4 g         | 83 * 38 * 12            | BLHeli 80A               | \$ 15.00    |
-| EDF 4S 2800KV 70mm | 2   | 178 g          | 27 * 30                 | CW/CCW 4S 2800KV 70mm    | \$ 30.00    |
-| Carbon Fiber Rods  | TBA | TBA            | TBA                     | TBA                      | TBA         |
+| Component           | Qty | Weight (grams) | Size (mm)               | Model                    | Price (USD) |
+|---------------------|-----|----------------|-------------------------|--------------------------|-------------|
+| Plane Body          | 1   | TBA            | TBA                     | TBA                      | TBA         |
+| Wings               | 1   | TBA            | TBA                     | TBA                      | TBA         |
+| IMU (MPU6050)\*     | 1   | 5 g            | 22 * 17 * 4             | MPU6050 and more         | *in stock*  |
+| GPS (NEO-6M)        | 1   | 12 g           | 25 * 25 * 7             | NEO-6M                   | *in stock*  |
+| STM32H743VGT6       | 1   | TBA            | 63 * 36                 | STM32H743VGT6 Dev Board  | *in stock*  |
+| OrangePi Zero 3     | 1   | 24 g           | 55 * 50                 | Orange Pi Zero 3         | *in stock*  |
+| Gens ACE 4S 5300mAh | 1   | 485 g          | 32 * 48 * 158           | Gens ACE LiPo Battery    | \$ 55.00    |
+| MG996R Servos       | 1   | 55 g           | 40.7 * 19.7 * 42.9      | MG996R                   | \$  2.00    |
+| MG90S Servos        | 6   | 12 g           | 22.8 * 12.2 * 28.5      | MG90S                    | \$  1.50    |
+| BLHeli 80A ESCs     | 2   | 29.4 g         | 83 * 38 * 12            | BLHeli 80A               | \$ 15.00    |
+| EDF 4S 2800KV 70mm  | 2   | 178 g          | 27 * 30                 | CW/CCW 4S 2800KV 70mm    | \$ 30.00    |
+| Carbon Fiber Rods.  | TBA | TBA            | TBA                     | TBA                      | TBA         |
 
 Note: The IMU module includes MPU6050, BNO055, and BMP280 sensors.
 
