@@ -2,6 +2,7 @@
 pub mod imu;
 pub mod pitot;
 pub mod fusion;
+pub mod gps;
 use embassy_stm32::i2c::Error as I2cError;
 
 

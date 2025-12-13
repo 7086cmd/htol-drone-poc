@@ -48,6 +48,7 @@ serde = { version = "1.0.228", default-features = false, features = [
 pid = "4.0.0"
 num-traits = { version = "0.2.19", default-features = false, features = ["libm"] }
 dshot-frame = "0.2.1"
+nmea = { version = "0.7", default-features = false, features = ["defmt-03"] }
 
 [[bin]]
 name = "drone"
