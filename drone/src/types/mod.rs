@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+#[derive(Clone, Copy, Debug, defmt::Format)]
 pub struct Telemetry {
     pub roll: f32,
     pub pitch: f32,
@@ -9,6 +10,7 @@ pub struct Telemetry {
     pub timestamp_us: u64,
 }
 
+#[derive(Clone, Copy, Debug, defmt::Format)]
 pub struct Command {
     pub yaw: f32,
     pub roll: f32,
