@@ -3,6 +3,7 @@ pub mod fusion;
 pub mod gps;
 pub mod imu;
 pub mod pitot;
+pub mod lidar;
 use embassy_stm32::i2c::Error as I2cError;
 
 #[derive(Debug, defmt::Format)]

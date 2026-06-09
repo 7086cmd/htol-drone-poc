@@ -13,21 +13,21 @@ Drones nowadays are mostly VTOL (Vertical Take-off and Landing) types, which hav
 - Plane Body: The drone can be 3D printed using LW-PLA material in about 20% to 30% infill to ensure durability while keeping the weight low; for critical structural parts, PETG or ABS materials can be used. The body is designed to house all the necessary components, including the flight controller, power system, and sensors. It features a streamlined shape to minimize drag during flight. The carbon fiber rods are used to reinforce the structure, providing additional strength and rigidity. The body also includes compartments for easy access to the electronics and battery.
 - Wing Configuration: The wings are designed to provide optimal lift and stability during flight. They can be printed separately and attached to the main body using screws or adhesive.
 - Power system:
-   - Motors: This is an EDF (Electric Ducted Fan) configuration, using two brushless motors (CW and CCW) to provide the necessary thrust for horizontal take-off and landing. The EDF setup is chosen for its efficiency and ability to generate high thrust in a compact form factor. We use DShot protocol for better performance and reliability, and the BLHeli firmware on the ESCs supports it. The 70mm 4S 2800KV brushless motors are selected for their balance between power and efficiency, suitable for the drone's size and weight. It can provide 1.8 kg thrust each, so the total thrust is around 3.6 kg, which should be sufficient for a drone weighing around 2 kg including payload.
-   - Servos: For control surfaces, standard servos are used to manipulate the ailerons, elevator, and rudder.
-      - Ailerons, Elevator, and Rudder: MG90S servos are used for controlling the ailerons and elevator, providing precise control over roll and pitch movements.
-      - Undercarriage Steering: A MG955 servo is used for steering the main undercarriage during taxiing, take-off, and landing operations; a MG996R servo is used for controlling the nose wheel steering.
-   - ESCs: Electronic Speed Controllers (ESCs) are used to regulate the speed of the brushless motors. The 80A BLHeli ESCs are chosen for their compatibility with the DShot protocol and their ability to handle the power requirements of the motors. It also have a 5V/5A BEC to power the flight controller and other electronics on each ESC.
-   - Power Supply: Gens Ace 4S 5300mAh LiPo batteries are used to provide the necessary power for the motors and electronics. These batteries offer a good balance between capacity and weight, ensuring sufficient flight time while keeping the overall weight of the drone manageable.
+  - Motors: This is an EDF (Electric Ducted Fan) configuration, using two brushless motors (CW and CCW) to provide the necessary thrust for horizontal take-off and landing. The EDF setup is chosen for its efficiency and ability to generate high thrust in a compact form factor. We use DShot protocol for better performance and reliability, and the BLHeli firmware on the ESCs supports it. The 70mm 4S 2800KV brushless motors are selected for their balance between power and efficiency, suitable for the drone's size and weight. It can provide 1.8 kg thrust each, so the total thrust is around 3.6 kg, which should be sufficient for a drone weighing around 2 kg including payload.
+  - Servos: For control surfaces, standard servos are used to manipulate the ailerons, elevator, and rudder.
+    - Ailerons, Elevator, and Rudder: MG90S servos are used for controlling the ailerons and elevator, providing precise control over roll and pitch movements.
+    - Undercarriage Steering: A MG955 servo is used for steering the main undercarriage during taxiing, take-off, and landing operations; a MG996R servo is used for controlling the nose wheel steering.
+  - ESCs: Electronic Speed Controllers (ESCs) are used to regulate the speed of the brushless motors. The 80A BLHeli ESCs are chosen for their compatibility with the DShot protocol and their ability to handle the power requirements of the motors. It also have a 5V/5A BEC to power the flight controller and other electronics on each ESC.
+  - Power Supply: Gens Ace 4S 5300mAh LiPo batteries are used to provide the necessary power for the motors and electronics. These batteries offer a good balance between capacity and weight, ensuring sufficient flight time while keeping the overall weight of the drone manageable.
 - Flight Controller:
-   - Lower Layer: The drone is equipped with a STM32H743VGT6 microcontroller, which serves as the flight controller. It is responsible for stabilizing the drone, managing flight modes, and processing sensor data. (*That's because only STM32H743VGT6 in my stock.*)
-   - Upper Layer: We leverage Orange Pi Zero 3 (with 4GB RAM) as the companion computer to handle high-level tasks such as mission planning, computer vision, and communication with ground control stations. (*That's because only Orange Pi Zero 3 in my stock.*)
-   - Optional Phone Integration: Using the Global Mobile Service (GMS) capabilities on phones, we can put smartphones into the drone for GMS-based navigation and control. This allows for additional functionalities such as real-time video streaming, telemetry data display, and remote control via mobile apps.
-   - NVIDIA Jetson Orin Nano 4GB could also be integrated for further AI-based functionalities, such as object detection and autonomous navigation. But it's not in the first version due to budget constraints and weight consider it in future iterations.
+  - Lower Layer: The drone is equipped with a STM32H743VGT6 microcontroller, which serves as the flight controller. It is responsible for stabilizing the drone, managing flight modes, and processing sensor data. (_That's because only STM32H743VGT6 in my stock._)
+  - Upper Layer: We leverage Orange Pi Zero 3 (with 4GB RAM) as the companion computer to handle high-level tasks such as mission planning, computer vision, and communication with ground control stations. (_That's because only Orange Pi Zero 3 in my stock._)
+  - Optional Phone Integration: Using the Global Mobile Service (GMS) capabilities on phones, we can put smartphones into the drone for GMS-based navigation and control. This allows for additional functionalities such as real-time video streaming, telemetry data display, and remote control via mobile apps.
+  - NVIDIA Jetson Orin Nano 4GB could also be integrated for further AI-based functionalities, such as object detection and autonomous navigation. But it's not in the first version due to budget constraints and weight consider it in future iterations.
 - Sensors: Various sensors are integrated into the drone to enhance its flight capabilities. These include an IMU (Inertial Measurement Unit) for attitude estimation, a barometer for altitude measurement, and a GPS module for navigation.
-   - IMU: MPU6050 (with BNO055 for data fusion if needed)
-   - Barometer: BMP280
-   - GPS: NEO-6M
+  - IMU: MPU6050 (with BNO055 for data fusion if needed)
+  - Barometer: BMP280
+  - GPS: NEO-6M
 - Communication: The drone utilizes a 2.4GHz radio frequency (RF) communication system for remote control and telemetry data transmission. This allows for real-time monitoring and control of the drone during flight.
 - Software: The flight control software is developed using Rust programming language, leveraging its safety and performance features. The software implements various flight control algorithms, sensor fusion techniques, and communication protocols to ensure stable and reliable flight performance.
 
@@ -46,14 +46,14 @@ The HTOL drone is composed of several subsystems that work together to achieve h
 
 - Propulsion System: The propulsion system consists of brushless motors, ESCs, and propellers. The motors provide the necessary thrust for take-off, flight, and landing. The ESCs regulate the speed of the motors based on control signals from the flight controller. The propellers are designed to optimize thrust and efficiency during horizontal flight.
 - Flight Control System: The flight control system is responsible for stabilizing the drone, managing flight modes, and data fusion from various sensors. The STM32H743VGT6 microcontroller serves as the primary flight controller, while the Orange Pi Zero 3 acts as a companion computer for high-level tasks, as well as LiDAR processing if needed. It analyzes sensor data, executes flight control algorithms, and sends control signals to the propulsion system and servos. It controls the speed, roll, yaw, and altitude of the drone during flight.
-   For example, to ascend the drone, the flight controller increases the throttle of the motors, generating more lift. To change direction, it adjusts the ailerons, elevator, and rudder using the servos.
+  For example, to ascend the drone, the flight controller increases the throttle of the motors, generating more lift. To change direction, it adjusts the ailerons, elevator, and rudder using the servos.
 - Sensor System: The sensor system includes an IMU, barometer, and GPS module. These sensors provide essential data for flight control and navigation. The IMU measures the drone's orientation and angular velocity, the barometer measures altitude, and the GPS module provides position data. The sensor data is processed and fused to improve accuracy and reliability.
 - Communication System: The communication system enables remote control and telemetry data transmission. By using GMS capabilities on smartphones, we can let the drone stay connected in anywhere with cellular coverage, advanced by the low-lantency 5G networks. The 2.4GHz RF communication system allows for real-time monitoring and control of the drone during flight. We can even consider using Ethernet for high-speed data transfer between the Orange Pi Zero 3 and the STM32 microcontroller.
-   A communication protocol should be implemented among smartphones and the controller, which actually resembles pilots and the air traffic control tower in real life. This protocol should cover commands for take-off, landing, navigation, and emergency procedures.
-   We have an abstraction on it. We classify the communication into three types:
-   1. Request/response. The pilot requests to ascent, for example, to the ATC, and the ATC responds with an acknowledgment or denial (sometimes with a negotiated altitude instead).
-   2. Information broadcast. The ATC broadcasts weather updates, no-fly zones, and other relevant information to all pilots in the area.
-   3. Emergency alerts. In case of emergencies, such as loss of communication or system failures, the ATC can send emergency alerts to all pilots, instructing them on the necessary actions to take.
+  A communication protocol should be implemented among smartphones and the controller, which actually resembles pilots and the air traffic control tower in real life. This protocol should cover commands for take-off, landing, navigation, and emergency procedures.
+  We have an abstraction on it. We classify the communication into three types:
+  1.  Request/response. The pilot requests to ascent, for example, to the ATC, and the ATC responds with an acknowledgment or denial (sometimes with a negotiated altitude instead).
+  2.  Information broadcast. The ATC broadcasts weather updates, no-fly zones, and other relevant information to all pilots in the area.
+  3.  Emergency alerts. In case of emergencies, such as loss of communication or system failures, the ATC can send emergency alerts to all pilots, instructing them on the necessary actions to take.
 - Power System: The power system consists of LiPo batteries that provide the necessary energy for the drone's operation. The batteries are selected to ensure sufficient flight duration and performance. The power system also includes voltage regulators and power distribution components to ensure stable and reliable power delivery to all subsystems.
 
 ## Aerodynamics
@@ -62,20 +62,20 @@ We list components and its weights and sizes as well as the estimated weight and
 
 We design the wingspan to be around 1.2 meters, providing sufficient lift for horizontal take-off and landing. The wing area is optimized to balance lift and drag, ensuring efficient flight performance. The airfoil shape is selected to enhance lift generation while minimizing drag.
 
-| Component           | Qty | Weight (grams) | Size (mm)               | Model                    | Price (USD) |
-|---------------------|-----|----------------|-------------------------|--------------------------|-------------|
-| Plane Body          | 1   | TBA            | TBA                     | TBA                      | TBA         |
-| Wings               | 1   | TBA            | TBA                     | TBA                      | TBA         |
-| IMU (MPU6050)\*     | 1   | 5 g            | 22 * 17 * 4             | MPU6050 and more         | *in stock*  |
-| GPS (NEO-6M)        | 1   | 12 g           | 25 * 25 * 7             | NEO-6M                   | *in stock*  |
-| STM32H743VGT6       | 1   | TBA            | 63 * 36                 | STM32H743VGT6 Dev Board  | *in stock*  |
-| OrangePi Zero 3     | 1   | 24 g           | 55 * 50                 | Orange Pi Zero 3         | *in stock*  |
-| Gens ACE 4S 5300mAh | 1   | 485 g          | 32 * 48 * 158           | Gens ACE LiPo Battery    | \$ 55.00    |
-| MG996R Servos       | 1   | 55 g           | 40.7 * 19.7 * 42.9      | MG996R                   | \$  2.00    |
-| MG90S Servos        | 6   | 12 g           | 22.8 * 12.2 * 28.5      | MG90S                    | \$  1.50    |
-| BLHeli 80A ESCs     | 2   | 29.4 g         | 83 * 38 * 12            | BLHeli 80A               | \$ 15.00    |
-| EDF 4S 2800KV 70mm  | 2   | 178 g          | 27 * 30                 | CW/CCW 4S 2800KV 70mm    | \$ 30.00    |
-| Carbon Fiber Rods.  | TBA | TBA            | TBA                     | TBA                      | TBA         |
+| Component           | Qty | Weight (grams) | Size (mm)          | Model                   | Price (USD) |
+| ------------------- | --- | -------------- | ------------------ | ----------------------- | ----------- |
+| Plane Body          | 1   | TBA            | TBA                | TBA                     | TBA         |
+| Wings               | 1   | TBA            | TBA                | TBA                     | TBA         |
+| IMU (MPU6050)\*     | 1   | 5 g            | 22 _ 17 _ 4        | MPU6050 and more        | _in stock_  |
+| GPS (NEO-6M)        | 1   | 12 g           | 25 _ 25 _ 7        | NEO-6M                  | _in stock_  |
+| STM32H743VGT6       | 1   | TBA            | 63 \* 36           | STM32H743VGT6 Dev Board | _in stock_  |
+| OrangePi Zero 3     | 1   | 24 g           | 55 \* 50           | Orange Pi Zero 3        | _in stock_  |
+| Gens ACE 4S 5300mAh | 1   | 485 g          | 32 _ 48 _ 158      | Gens ACE LiPo Battery   | \$ 55.00    |
+| MG996R Servos       | 1   | 55 g           | 40.7 _ 19.7 _ 42.9 | MG996R                  | \$ 2.00     |
+| MG90S Servos        | 6   | 12 g           | 22.8 _ 12.2 _ 28.5 | MG90S                   | \$ 1.50     |
+| BLHeli 80A ESCs     | 2   | 29.4 g         | 83 _ 38 _ 12       | BLHeli 80A              | \$ 15.00    |
+| EDF 4S 2800KV 70mm  | 2   | 178 g          | 27 \* 30           | CW/CCW 4S 2800KV 70mm   | \$ 30.00    |
+| Carbon Fiber Rods.  | TBA | TBA            | TBA                | TBA                     | TBA         |
 
 Note: The IMU module includes MPU6050, BNO055, and BMP280 sensors.
 
@@ -126,15 +126,17 @@ Components marked "TBA" are placeholders to be determined through testing, not o
 ### Technical Challenges Acknowledged
 
 I'm aware that:
+
 - Building a flight controller from scratch is complex and time-consuming
 - Weight and power budgets will need validation through actual hardware
-- Aerodynamic performance will need empirical testing and iteration  
+- Aerodynamic performance will need empirical testing and iteration
 - First flight attempts may not succeed; this is expected and part of the learning process
 - Some design decisions may prove suboptimal and require revision
 
 ### Safety Notice
 
 **This project involves LiPo batteries, spinning propellers, and flying objects.** If you attempt to build something similar:
+
 - Follow proper LiPo battery safety procedures
 - Test in open areas away from people and property
 - Comply with local UAV/drone regulations
@@ -144,6 +146,7 @@ I'm aware that:
 ### Contributions and Feedback
 
 Technical feedback, suggestions, and corrections are welcome. However, please understand:
+
 - This is a personal project progressing at my own pace
 - Design choices reflect my learning goals, not necessarily optimal engineering
 - I may choose approaches that are "interesting" over "established best practice" intentionally

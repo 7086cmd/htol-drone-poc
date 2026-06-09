@@ -22,6 +22,7 @@ mod consts;
 mod control;
 mod sensor;
 mod types;
+mod states;
 
 use consts::*;
 use control::{MotionController, pid::PidController};
